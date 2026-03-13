@@ -82,7 +82,7 @@
       </section>
       <section class="section" id="weather">
         <h2>Weather</h2>
-        <button class="interactive toggle" data-target="forecast5d"><div class="weather-top"><div class="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta">Sunny intervals · gentle wind · tap for 5-day view</div></div></div><div class="meta">Beach / outing suitability: good</div></button>
+        <button class="interactive toggle" data-target="forecast5d"><div class="weather-top"><div class="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta">Sunny intervals · gentle wind</div></div></div></button>
         <div class="detail" id="forecast5d"><div class="forecast-list"><div class="forecast-item"><span>Sat ☀️</span><span>18° / 24°</span></div><div class="forecast-item"><span>Sun ⛅️</span><span>17° / 23°</span></div><div class="forecast-item"><span>Mon 🌤️</span><span>16° / 22°</span></div><div class="forecast-item"><span>Tue 🌧️</span><span>15° / 20°</span></div><div class="forecast-item"><span>Wed ☀️</span><span>17° / 24°</span></div></div></div>
       </section>
     </div>
@@ -104,27 +104,31 @@
     </section>
 
     <section class="section" id="weekend-trip">
-      <h2>Weekend road trip idea</h2>
+      <h2>Weekend road trip</h2>
       <div class="trip-card">
-        <div class="title">Loutraki Beach, Akrotiri</div>
-        <div class="meta">A more scenic westward run, with a calmer beach mood than dense city-front options and a cleaner sense of arrival.</div>
-        <div class="trip-list">
-          <a class="tap-row" href="https://www.google.com/maps/dir/?api=1&origin=Dafnes+Heraklion+Crete&destination=Loutraki+Beach+Akrotiri+Greece&travelmode=driving" target="_blank" rel="noopener">
-            <div class="trip-item"><strong>Itinerary</strong><span>About 2h 20m by car. A more scenic westward outing with a clearer sense of leaving the everyday routine behind and arriving somewhere that feels like a real coastal break.</span></div>
-          </a>
-          <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Loutraki+Beach+Akrotiri+Greece" target="_blank" rel="noopener">
-            <div class="trip-item"><strong>Destination</strong><span>A contained, attractive beach destination with a simpler emotional profile than busier urban-front options — easier to frame as a calm drive, beach, lunch, and return.</span></div>
-          </a>
-        </div>
-      </div>
+        <button class="interactive toggle" data-target="weekendTripDetail">
+          <div class="title">Loutraki Beach, Akrotiri</div>
+          <div class="meta">A more scenic westward run, with a calmer beach mood than dense city-front options and a cleaner sense of arrival.</div>
+        </button>
+        <div class="detail" id="weekendTripDetail">
+          <div class="trip-list">
+            <a class="tap-row" href="https://www.google.com/maps/dir/?api=1&origin=Dafnes+Heraklion+Crete&destination=Loutraki+Beach+Akrotiri+Greece&travelmode=driving" target="_blank" rel="noopener">
+              <div class="trip-item"><strong>Itinerary</strong><span>About 2h 20m by car. It feels like a real westward outing rather than a quick local beach hop, with a more scenic sense of departure and arrival.</span></div>
+            </a>
+            <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Loutraki+Beach+Akrotiri+Greece" target="_blank" rel="noopener">
+              <div class="trip-item"><strong>Destination</strong><span>Loutraki is a contained, attractive beach stop with a calmer emotional profile than busier urban-front options. It suits a simple beach-and-lunch plan better than a chaotic all-day outing.</span></div>
+            </a>
+          </div>
 
-      <div class="trip-card">
-        <div class="title">Food with a view nearby</div>
-        <div class="meta">Tap a place to open it in Google Maps.</div>
-        <div class="trip-list">
-          <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=NAMFI+Restaurant+Marathi+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>NAMFI Restaurant</strong><div class="meta">Marathi · rating 4.5 · 985 reviews</div></div><span>Casual seafront option close to the beach area.</span></div></a>
-          <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Almy+Seaside+Armeni+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Almy Seaside</strong><div class="meta">Armeni · rating 4.5 · 993 reviews</div></div><span>Seaside setting with a more laid-back feel and strong view value.</span></div></a>
-          <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Canale+Restaurant+Chania" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Canale Restaurant Chania</strong><div class="meta">Old Port · rating 4.9 · 5,926 reviews</div></div><span>Stronger wow factor if you want the lunch stop to feel more polished and scenic.</span></div></a>
+          <div class="trip-card" style="margin-top:12px; padding:0; background:transparent; box-shadow:none;">
+            <div class="title">Food with a view nearby</div>
+            <div class="meta">Tap a place to open it in Google Maps.</div>
+            <div class="trip-list">
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=NAMFI+Restaurant+Marathi+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>NAMFI Restaurant</strong><div class="meta">Marathi · rating 4.5 · 985 reviews</div></div><span>Casual seafront option close to the beach area.</span></div></a>
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Almy+Seaside+Armeni+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Almy Seaside</strong><div class="meta">Armeni · rating 4.5 · 993 reviews</div></div><span>Seaside setting with a more laid-back feel and strong view value.</span></div></a>
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Canale+Restaurant+Chania" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Canale Restaurant Chania</strong><div class="meta">Old Port · rating 4.9 · 5,926 reviews</div></div><span>Stronger wow factor if you want the lunch stop to feel more polished and scenic.</span></div></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
