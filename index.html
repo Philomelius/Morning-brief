@@ -55,23 +55,15 @@
       text-decoration: none; display: inline-block;
     }
     .chip-btn:active { transform: scale(.98); }
-    .interactive {
-      display:block; width:100%; text-align:left; background: transparent; color: inherit; border:0; padding:0; font: inherit;
-    }
-    .news-item, .event, .task-card {
-      padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .news-item:first-of-type, .event:first-of-type, .task-card:first-of-type { border-top: 0; padding-top: 0; }
+    .interactive { display:block; width:100%; text-align:left; background: transparent; color: inherit; border:0; padding:0; font: inherit; }
+    .news-item, .event, .task-card, .trip-card { padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .news-item:first-of-type, .event:first-of-type, .task-card:first-of-type, .trip-card:first-of-type { border-top: 0; padding-top: 0; }
     .title { font-weight: 650; line-height: 1.35; }
     .meta { color: var(--muted); font-size: 12px; margin-top: 5px; }
-    .detail {
-      overflow: hidden; max-height: 0; transition: max-height .28s ease; color: var(--muted); font-size: 14px; line-height: 1.5;
-    }
-    .detail.open { max-height: 220px; margin-top: 8px; }
+    .detail { overflow: hidden; max-height: 0; transition: max-height .28s ease; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .detail.open { max-height: 800px; margin-top: 10px; }
     .board { display: grid; gap: 10px; }
-    .task-card {
-      background: rgba(255,255,255,.05); border-radius: 16px; padding: 12px; border-top: 0 !important;
-    }
+    .task-card { background: rgba(255,255,255,.05); border-radius: 16px; padding: 12px; border-top: 0 !important; }
     .bar { height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; margin-top: 10px; overflow: hidden; }
     .bar > span { display:block; height:100%; border-radius:999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
     .markets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -80,8 +72,12 @@
     .negative { color: var(--danger); }
     .weather-top { display:flex; align-items:center; gap:12px; }
     .weather-icon { font-size: 42px; line-height: 1; }
-    .forecast-list { display:grid; gap:8px; margin-top:10px; }
-    .forecast-item { display:flex; justify-content:space-between; background: rgba(255,255,255,.05); border-radius:14px; padding:10px 12px; }
+    .forecast-list, .trip-list { display:grid; gap:8px; margin-top:10px; }
+    .forecast-item, .trip-item { display:flex; justify-content:space-between; gap:14px; background: rgba(255,255,255,.05); border-radius:14px; padding:10px 12px; align-items:flex-start; }
+    .trip-card { background: rgba(255,255,255,.04); border-radius: 18px; padding: 14px; border-top:0 !important; }
+    .trip-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .link-btn { display:inline-block; text-decoration:none; color:#0b1020; background: linear-gradient(90deg, var(--accent), var(--accent2)); padding:10px 12px; border-radius:999px; font-size:13px; font-weight:700; }
+    .soft-link { display:inline-block; text-decoration:none; color:var(--text); background: rgba(255,255,255,.08); padding:10px 12px; border-radius:999px; font-size:13px; }
     .footer { color: var(--muted); text-align: center; font-size: 12px; margin-top: 18px; }
     @media (min-width: 680px) {
       .stats { grid-template-columns: repeat(4, 1fr); }
@@ -117,121 +113,77 @@
     <div class="two">
       <section class="section" id="news">
         <h2>Top headlines</h2>
-
-        <div class="news-item">
-          <button class="interactive toggle" data-target="news1">
-            <div class="title">Global markets steady as inflation expectations cool</div>
-            <div class="meta">Reuters · tap for more</div>
-          </button>
-          <div class="detail" id="news1">Risk assets are firmer as traders price a softer inflation path and a less aggressive rate outlook. The main significance for your briefing is a calmer macro backdrop, not a dramatic market shift.</div>
-        </div>
-
-        <div class="news-item">
-          <button class="interactive toggle" data-target="news2">
-            <div class="title">EU policy talks focus on energy, growth, and security posture</div>
-            <div class="meta">Financial Times · tap for more</div>
-          </button>
-          <div class="detail" id="news2">The likely practical implications are continued pressure on industrial costs, strategic investment, and political messaging around resilience. It matters as context rather than as a single market-moving event.</div>
-        </div>
-
-        <div class="news-item">
-          <button class="interactive toggle" data-target="news3">
-            <div class="title">AI infrastructure spending remains strong across major cloud players</div>
-            <div class="meta">Bloomberg · tap for more</div>
-          </button>
-          <div class="detail" id="news3">The broad picture remains the same: capital keeps flowing into compute, models, and deployment capacity. For your strategic interests, the signal is that the platform race is still accelerating rather than cooling.</div>
-        </div>
+        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">Global markets steady as inflation expectations cool</div><div class="meta">Reuters · tap for more</div></button><div class="detail" id="news1">Risk assets are firmer as traders price a softer inflation path and a less aggressive rate outlook. The main significance for your briefing is a calmer macro backdrop, not a dramatic market shift.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">EU policy talks focus on energy, growth, and security posture</div><div class="meta">Financial Times · tap for more</div></button><div class="detail" id="news2">The likely practical implications are continued pressure on industrial costs, strategic investment, and political messaging around resilience. It matters as context rather than as a single market-moving event.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">AI infrastructure spending remains strong across major cloud players</div><div class="meta">Bloomberg · tap for more</div></button><div class="detail" id="news3">The broad picture remains the same: capital keeps flowing into compute, models, and deployment capacity. For your strategic interests, the signal is that the platform race is still accelerating rather than cooling.</div></div>
       </section>
 
       <section class="section" id="weather">
         <h2>Weather</h2>
         <button class="interactive toggle" data-target="forecast5d">
-          <div class="weather-top">
-            <div class="weather-icon">☀️</div>
-            <div>
-              <div class="title">Dafnés, Crete</div>
-              <div class="meta">Sunny intervals · gentle wind · tap for 5-day view</div>
-            </div>
-          </div>
-          <div class="bar"><span style="width:72%"></span></div>
+          <div class="weather-top"><div class="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta">Sunny intervals · gentle wind · tap for 5-day view</div></div></div>
           <div class="meta">Beach / outing suitability: good</div>
         </button>
-        <div class="detail" id="forecast5d">
-          <div class="forecast-list">
-            <div class="forecast-item"><span>Sat ☀️</span><span>18° / 24°</span></div>
-            <div class="forecast-item"><span>Sun ⛅️</span><span>17° / 23°</span></div>
-            <div class="forecast-item"><span>Mon 🌤️</span><span>16° / 22°</span></div>
-            <div class="forecast-item"><span>Tue 🌧️</span><span>15° / 20°</span></div>
-            <div class="forecast-item"><span>Wed ☀️</span><span>17° / 24°</span></div>
-          </div>
-        </div>
+        <div class="detail" id="forecast5d"><div class="forecast-list"><div class="forecast-item"><span>Sat ☀️</span><span>18° / 24°</span></div><div class="forecast-item"><span>Sun ⛅️</span><span>17° / 23°</span></div><div class="forecast-item"><span>Mon 🌤️</span><span>16° / 22°</span></div><div class="forecast-item"><span>Tue 🌧️</span><span>15° / 20°</span></div><div class="forecast-item"><span>Wed ☀️</span><span>17° / 24°</span></div></div></div>
       </section>
     </div>
 
     <section class="section" id="calendar">
       <h2>Calendar</h2>
-      <div class="event">
-        <div class="title">10:30 — Work start</div>
-        <div class="meta">BNP Paribas schedule placeholder</div>
-      </div>
-      <div class="event">
-        <div class="title">14:00 — Follow-up block</div>
-        <div class="meta">Admin / personal tasks placeholder</div>
-      </div>
-      <div class="event">
-        <div class="title">18:30 — Friday recurring event</div>
-        <div class="meta">Schedule placeholder</div>
-      </div>
+      <div class="event"><div class="title">10:30 — Work start</div><div class="meta">BNP Paribas schedule placeholder</div></div>
+      <div class="event"><div class="title">14:00 — Follow-up block</div><div class="meta">Admin / personal tasks placeholder</div></div>
+      <div class="event"><div class="title">18:30 — Friday recurring event</div><div class="meta">Schedule placeholder</div></div>
     </section>
 
     <section class="section" id="projects">
       <h2>Project dashboard</h2>
       <div class="board">
-        <div class="task-card">
-          <button class="interactive toggle" data-target="proj1">
-            <div class="title">Email pipeline cutover</div>
-            <div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div>
-            <div class="bar"><span style="width:58%"></span></div>
-          </button>
-          <div class="detail" id="proj1">Main achievements: Gmail retired, new mailbox path identified, DNS route narrowed, real outbound tests attempted. Potential blockers: final DNS propagation and end-to-end receive/send verification.</div>
-        </div>
-        <div class="task-card">
-          <button class="interactive toggle" data-target="proj2">
-            <div class="title">Morning brief webpage</div>
-            <div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div>
-            <div class="bar"><span style="width:42%"></span></div>
-          </button>
-          <div class="detail" id="proj2">Main achievements: GitHub Pages route proven, mobile-first prototype live, interactive sections added. Potential blockers: richer live data, graphs, and daily publishing workflow hardening.</div>
-        </div>
-        <div class="task-card">
-          <button class="interactive toggle" data-target="proj3">
-            <div class="title">Calendar write path</div>
-            <div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div>
-            <div class="bar"><span style="width:22%"></span></div>
-          </button>
-          <div class="detail" id="proj3">Main achievements: requirements clarified. Potential blockers: choosing the write path that is reliable and visible in Nicolas’s Apple calendar without manual friction.</div>
-        </div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Email pipeline cutover</div><div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div><div class="bar"><span style="width:58%"></span></div></button><div class="detail" id="proj1">Main achievements: Gmail retired, new mailbox path identified, DNS route narrowed, real outbound tests attempted. Potential blockers: final DNS propagation and end-to-end receive/send verification.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Morning brief webpage</div><div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div><div class="bar"><span style="width:42%"></span></div></button><div class="detail" id="proj2">Main achievements: GitHub Pages route proven, mobile-first prototype live, interactive sections added. Potential blockers: richer live data, graphs, and daily publishing workflow hardening.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Calendar write path</div><div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div><div class="bar"><span style="width:22%"></span></div></button><div class="detail" id="proj3">Main achievements: requirements clarified. Potential blockers: choosing the write path that is reliable and visible in Nicolas’s Apple calendar without manual friction.</div></div>
       </div>
     </section>
 
     <section class="section" id="weekend-trip">
       <h2>Weekend road trip idea</h2>
-      <button class="interactive toggle" data-target="trip1">
-        <div class="title">Scenic drive to Loutraki Beach</div>
-        <div class="meta">Low-friction outing · calmer atmosphere · good fit for Lily + Ursa · tap for route notes</div>
-        <div class="bar"><span style="width:78%"></span></div>
-      </button>
-      <div class="detail" id="trip1">
-        <div class="forecast-list">
-          <div class="forecast-item"><span>Drive mood</span><span>Scenic / relaxed</span></div>
-          <div class="forecast-item"><span>Stress profile</span><span>Lower crowd pressure</span></div>
-          <div class="forecast-item"><span>Dog practicality</span><span>Better than dense town beach options</span></div>
-          <div class="forecast-item"><span>Why this works</span><span>Beautiful approach, simpler logistics, less chaotic energy</span></div>
+      <div class="trip-card">
+        <button class="interactive toggle" data-target="trip1">
+          <div class="title">Loutraki Beach, Akrotiri</div>
+          <div class="meta">A more scenic westward run, with a calmer beach mood than dense city-front options and a cleaner sense of arrival.</div>
+        </button>
+        <div class="detail" id="trip1">
+          <div class="trip-list">
+            <div class="trip-item"><strong>Itinerary</strong><span>Drive west from Dafnés toward Chania, then continue onto Akrotiri for the final descent to Loutraki Beach.</span></div>
+            <div class="trip-item"><strong>Why this works</strong><span>The route gives you more scenery and a stronger outing feeling, while the destination is easier to frame as a contained beach stop rather than a chaotic all-day crush.</span></div>
+            <div class="trip-item"><strong>Stress profile</strong><span>Better for Lily than a noisier, denser beach-town day. Easier to keep the plan simple: drive, beach, lunch, return.</span></div>
+            <div class="trip-item"><strong>Ursa factor</strong><span>More practical than cramped urban seafronts, with simpler transitions between parking, walk, and beach time.</span></div>
+          </div>
+          <div class="trip-links">
+            <a class="link-btn" href="https://www.google.com/maps/dir/?api=1&origin=Dafnes+Heraklion+Crete&destination=Loutraki+Beach+Akrotiri+Greece&travelmode=driving" target="_blank" rel="noopener">Open driving route</a>
+            <a class="soft-link" href="https://www.google.com/maps/search/?api=1&query=Loutraki+Beach+Akrotiri+Greece" target="_blank" rel="noopener">Open destination</a>
+          </div>
         </div>
-        <div class="meta" style="margin-top:10px;">Prototype recommendation logic: prefer a pleasant drive, manageable arrival, and a beach that feels calmer and more spacious rather than maximally busy or flashy.</div>
+      </div>
+
+      <div class="trip-card">
+        <button class="interactive toggle" data-target="food1">
+          <div class="title">Food with a view nearby</div>
+          <div class="meta">Tap for concrete places near the destination</div>
+        </button>
+        <div class="detail" id="food1">
+          <div class="trip-list">
+            <div class="trip-item"><div><strong>NAMFI Restaurant</strong><div class="meta">Marathi · rating 4.5 · 985 reviews</div></div><span>Casual seafront option close to the beach area.</span></div>
+            <div class="trip-item"><div><strong>Almy Seaside</strong><div class="meta">Armeni · rating 4.5 · 993 reviews</div></div><span>Seaside setting with a more laid-back feel and strong view value.</span></div>
+            <div class="trip-item"><div><strong>Canale Restaurant Chania</strong><div class="meta">Old Port · rating 4.9 · 5,926 reviews</div></div><span>Stronger wow factor if you want the lunch stop to feel more polished and scenic.</span></div>
+          </div>
+          <div class="trip-links">
+            <a class="soft-link" href="https://www.google.com/maps/search/?api=1&query=NAMFI+Restaurant+Marathi+Greece" target="_blank" rel="noopener">NAMFI on Maps</a>
+            <a class="soft-link" href="https://www.google.com/maps/search/?api=1&query=Almy+Seaside+Armeni+Greece" target="_blank" rel="noopener">Almy Seaside on Maps</a>
+            <a class="soft-link" href="https://www.google.com/maps/search/?api=1&query=Canale+Restaurant+Chania" target="_blank" rel="noopener">Canale on Maps</a>
+          </div>
+        </div>
       </div>
     </section>
-
 
     <section class="section" id="markets">
       <h2>Markets</h2>
@@ -245,14 +197,11 @@
 
     <div class="footer">Prototype only · next step is wiring live data and daily publication flow</div>
   </main>
-
   <script>
-    document.querySelectorAll('.toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.dataset.target);
-        if (target) target.classList.toggle('open');
-      });
-    });
+    document.querySelectorAll('.toggle').forEach(btn => btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.toggle('open');
+    }));
   </script>
 </body>
 </html>
