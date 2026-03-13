@@ -8,7 +8,6 @@
     :root {
       --bg: #0b1020;
       --card: rgba(255,255,255,0.08);
-      --card-strong: rgba(255,255,255,0.12);
       --text: #eef2ff;
       --muted: #b9c2e3;
       --accent: #76a9ff;
@@ -17,7 +16,8 @@
       --shadow: 0 10px 30px rgba(0,0,0,.28);
       --radius: 20px;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -28,58 +28,49 @@
         linear-gradient(180deg, #0b1020 0%, #121a31 100%);
       min-height: 100vh;
     }
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 16px 14px 36px;
-    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 16px 14px 36px; }
     .hero {
-      padding: 18px;
-      border-radius: 24px;
+      padding: 18px; border-radius: 24px;
       background: linear-gradient(135deg, rgba(118,169,255,.22), rgba(255,255,255,.08));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      margin-bottom: 14px;
+      box-shadow: var(--shadow); backdrop-filter: blur(14px); margin-bottom: 14px;
     }
     .eyebrow { color: var(--muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
     h1 { margin: 6px 0 6px; font-size: 30px; line-height: 1.05; }
     .sub { color: var(--muted); font-size: 14px; line-height: 1.45; }
     .grid { display: grid; gap: 12px; }
     .stats { grid-template-columns: repeat(2, 1fr); margin-top: 14px; }
-    .stat {
-      background: rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 14px;
-    }
+    .stat { background: rgba(255,255,255,.08); border-radius: 18px; padding: 14px; }
     .stat .k { color: var(--muted); font-size: 12px; }
     .stat .v { font-size: 22px; font-weight: 700; margin-top: 4px; }
     .section {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      margin-top: 12px;
+      background: var(--card); border-radius: var(--radius); padding: 16px;
+      box-shadow: var(--shadow); backdrop-filter: blur(10px); margin-top: 12px;
+      scroll-margin-top: 16px;
     }
     .section h2 { margin: 0 0 12px; font-size: 18px; }
     .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-    .chip {
-      font-size: 12px; color: #dbe6ff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08);
-      border-radius: 999px; padding: 7px 10px;
+    .chip-btn {
+      font-size: 12px; color: #dbe6ff; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08); border-radius: 999px; padding: 8px 11px;
+      text-decoration: none; display: inline-block;
     }
-    .news-item, .event, .task {
-      padding: 12px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
+    .chip-btn:active { transform: scale(.98); }
+    .interactive {
+      display:block; width:100%; text-align:left; background: transparent; color: inherit; border:0; padding:0; font: inherit;
     }
-    .news-item:first-of-type, .event:first-of-type, .task:first-of-type { border-top: 0; padding-top: 0; }
+    .news-item, .event, .task-card {
+      padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .news-item:first-of-type, .event:first-of-type, .task-card:first-of-type { border-top: 0; padding-top: 0; }
     .title { font-weight: 650; line-height: 1.35; }
     .meta { color: var(--muted); font-size: 12px; margin-top: 5px; }
+    .detail {
+      overflow: hidden; max-height: 0; transition: max-height .28s ease; color: var(--muted); font-size: 14px; line-height: 1.5;
+    }
+    .detail.open { max-height: 220px; margin-top: 8px; }
     .board { display: grid; gap: 10px; }
-    .task {
-      background: rgba(255,255,255,.05);
-      border-radius: 16px;
-      padding: 12px;
-      border-top: 0 !important;
+    .task-card {
+      background: rgba(255,255,255,.05); border-radius: 16px; padding: 12px; border-top: 0 !important;
     }
     .bar { height: 8px; background: rgba(255,255,255,.08); border-radius: 999px; margin-top: 10px; overflow: hidden; }
     .bar > span { display:block; height:100%; border-radius:999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
@@ -87,6 +78,10 @@
     .market { background: rgba(255,255,255,.05); border-radius: 16px; padding: 12px; }
     .positive { color: var(--accent2); }
     .negative { color: var(--danger); }
+    .weather-top { display:flex; align-items:center; gap:12px; }
+    .weather-icon { font-size: 42px; line-height: 1; }
+    .forecast-list { display:grid; gap:8px; margin-top:10px; }
+    .forecast-item { display:flex; justify-content:space-between; background: rgba(255,255,255,.05); border-radius:14px; padding:10px 12px; }
     .footer { color: var(--muted); text-align: center; font-size: 12px; margin-top: 18px; }
     @media (min-width: 680px) {
       .stats { grid-template-columns: repeat(4, 1fr); }
@@ -100,7 +95,7 @@
     <section class="hero">
       <div class="eyebrow">Prototype · mobile-first morning brief</div>
       <h1>Good morning, Nicolas</h1>
-      <div class="sub">This is the direction: a clean web brief built for phone reading first, with stronger hierarchy, cards, dashboard blocks, and room for visuals/graphs.</div>
+      <div class="sub">Interactive prototype: tap chips to jump, tap headlines/projects/weather to reveal more detail.</div>
       <div class="grid stats">
         <div class="stat"><div class="k">Weather</div><div class="v">19° / 24°</div></div>
         <div class="stat"><div class="k">Calendar</div><div class="v">3 items</div></div>
@@ -109,44 +104,71 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="glance">
       <h2>Today at a glance</h2>
       <div class="chips">
-        <div class="chip">Dafnés, Crete forecast</div>
-        <div class="chip">International headlines</div>
-        <div class="chip">Calendar</div>
-        <div class="chip">Markets</div>
-        <div class="chip">Project dashboard</div>
+        <a class="chip-btn" href="#weather">Weather</a>
+        <a class="chip-btn" href="#calendar">Calendar</a>
+        <a class="chip-btn" href="#projects">Projects</a>
+        <a class="chip-btn" href="#markets">Markets</a>
       </div>
     </section>
 
     <div class="two">
-      <section class="section">
+      <section class="section" id="news">
         <h2>Top headlines</h2>
+
         <div class="news-item">
-          <div class="title">Global markets steady as inflation expectations cool</div>
-          <div class="meta">Reuters · placeholder prototype item</div>
+          <button class="interactive toggle" data-target="news1">
+            <div class="title">Global markets steady as inflation expectations cool</div>
+            <div class="meta">Reuters · tap for more</div>
+          </button>
+          <div class="detail" id="news1">Risk assets are firmer as traders price a softer inflation path and a less aggressive rate outlook. The main significance for your briefing is a calmer macro backdrop, not a dramatic market shift.</div>
         </div>
+
         <div class="news-item">
-          <div class="title">EU policy talks focus on energy, growth, and security posture</div>
-          <div class="meta">Financial Times · placeholder prototype item</div>
+          <button class="interactive toggle" data-target="news2">
+            <div class="title">EU policy talks focus on energy, growth, and security posture</div>
+            <div class="meta">Financial Times · tap for more</div>
+          </button>
+          <div class="detail" id="news2">The likely practical implications are continued pressure on industrial costs, strategic investment, and political messaging around resilience. It matters as context rather than as a single market-moving event.</div>
         </div>
+
         <div class="news-item">
-          <div class="title">AI infrastructure spending remains strong across major cloud players</div>
-          <div class="meta">Bloomberg · placeholder prototype item</div>
+          <button class="interactive toggle" data-target="news3">
+            <div class="title">AI infrastructure spending remains strong across major cloud players</div>
+            <div class="meta">Bloomberg · tap for more</div>
+          </button>
+          <div class="detail" id="news3">The broad picture remains the same: capital keeps flowing into compute, models, and deployment capacity. For your strategic interests, the signal is that the platform race is still accelerating rather than cooling.</div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="weather">
         <h2>Weather</h2>
-        <div class="title">Dafnés, Crete</div>
-        <div class="meta">Sunny intervals · gentle wind · low stress travel day</div>
-        <div class="bar"><span style="width:72%"></span></div>
-        <div class="meta">Beach / outing suitability: good</div>
+        <button class="interactive toggle" data-target="forecast5d">
+          <div class="weather-top">
+            <div class="weather-icon">☀️</div>
+            <div>
+              <div class="title">Dafnés, Crete</div>
+              <div class="meta">Sunny intervals · gentle wind · tap for 5-day view</div>
+            </div>
+          </div>
+          <div class="bar"><span style="width:72%"></span></div>
+          <div class="meta">Beach / outing suitability: good</div>
+        </button>
+        <div class="detail" id="forecast5d">
+          <div class="forecast-list">
+            <div class="forecast-item"><span>Sat ☀️</span><span>18° / 24°</span></div>
+            <div class="forecast-item"><span>Sun ⛅️</span><span>17° / 23°</span></div>
+            <div class="forecast-item"><span>Mon 🌤️</span><span>16° / 22°</span></div>
+            <div class="forecast-item"><span>Tue 🌧️</span><span>15° / 20°</span></div>
+            <div class="forecast-item"><span>Wed ☀️</span><span>17° / 24°</span></div>
+          </div>
+        </div>
       </section>
     </div>
 
-    <section class="section">
+    <section class="section" id="calendar">
       <h2>Calendar</h2>
       <div class="event">
         <div class="title">10:30 — Work start</div>
@@ -162,28 +184,37 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="projects">
       <h2>Project dashboard</h2>
       <div class="board">
-        <div class="task">
-          <div class="title">Email pipeline cutover</div>
-          <div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div>
-          <div class="bar"><span style="width:58%"></span></div>
+        <div class="task-card">
+          <button class="interactive toggle" data-target="proj1">
+            <div class="title">Email pipeline cutover</div>
+            <div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div>
+            <div class="bar"><span style="width:58%"></span></div>
+          </button>
+          <div class="detail" id="proj1">Main achievements: Gmail retired, new mailbox path identified, DNS route narrowed, real outbound tests attempted. Potential blockers: final DNS propagation and end-to-end receive/send verification.</div>
         </div>
-        <div class="task">
-          <div class="title">Morning brief webpage</div>
-          <div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div>
-          <div class="bar"><span style="width:42%"></span></div>
+        <div class="task-card">
+          <button class="interactive toggle" data-target="proj2">
+            <div class="title">Morning brief webpage</div>
+            <div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div>
+            <div class="bar"><span style="width:42%"></span></div>
+          </button>
+          <div class="detail" id="proj2">Main achievements: GitHub Pages route proven, mobile-first prototype live, interactive sections added. Potential blockers: richer live data, graphs, and daily publishing workflow hardening.</div>
         </div>
-        <div class="task">
-          <div class="title">Calendar write path</div>
-          <div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div>
-          <div class="bar"><span style="width:22%"></span></div>
+        <div class="task-card">
+          <button class="interactive toggle" data-target="proj3">
+            <div class="title">Calendar write path</div>
+            <div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div>
+            <div class="bar"><span style="width:22%"></span></div>
+          </button>
+          <div class="detail" id="proj3">Main achievements: requirements clarified. Potential blockers: choosing the write path that is reliable and visible in Nicolas’s Apple calendar without manual friction.</div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="markets">
       <h2>Markets</h2>
       <div class="markets">
         <div class="market"><div class="k">S&amp;P 500</div><div class="v">5,128</div><div class="meta positive">+0.4%</div></div>
@@ -193,7 +224,16 @@
       </div>
     </section>
 
-    <div class="footer">Prototype only · next step is publishing this through GitHub Pages and wiring live data</div>
+    <div class="footer">Prototype only · next step is wiring live data and daily publication flow</div>
   </main>
+
+  <script>
+    document.querySelectorAll('.toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (target) target.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
