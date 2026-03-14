@@ -1,101 +1,155 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
-  <title>GOOD MORNING — SAT 14 MAR</title>
-  <meta name='theme-color' content='#0b1020' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Morning Brief Prototype</title>
   <style>
-    :root { --bg:#0b1020; --card:#121a31; --text:#eef2ff; --muted:#aeb9df; --accent:#7db0ff; --accent2:#8ef0c7; --line:#233154; --shadow:0 16px 40px rgba(0,0,0,.28); --radius:22px; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:linear-gradient(180deg,#0b1020,#111933 40%,#0b1020); color:var(--text); }
-    .wrap { max-width:860px; margin:0 auto; padding:20px 14px 72px; }
-    .hero { padding:22px 18px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(180deg,rgba(125,176,255,.16),rgba(142,240,199,.08)); box-shadow:var(--shadow); }
-    .eyebrow { color:var(--accent2); font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
-    h1 { margin:0 0 10px; font-size:28px; line-height:1.1; }
-    .sub { color:var(--muted); font-size:14px; line-height:1.5; }
-    .cta { margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; }
-    .pill { display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px; background:rgba(255,255,255,.06); color:var(--text); text-decoration:none; font-size:13px; border:1px solid rgba(255,255,255,.08); }
-    nav { display:flex; gap:10px; overflow:auto; padding:14px 2px 4px; margin:6px 0 16px; scrollbar-width:none; }
-    nav a { white-space:nowrap; color:var(--muted); text-decoration:none; padding:10px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); font-size:13px; }
-    .grid { display:grid; gap:14px; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:var(--shadow); }
-    .card h2 { margin:0 0 12px; font-size:18px; line-height:1.25; }
-    .card p { margin:0 0 12px; color:var(--text); line-height:1.55; }
-    .card ul { margin:0; padding-left:18px; color:var(--text); }
-    .card li { margin:0 0 10px; line-height:1.5; }
-    .footer { margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
-    details { margin-top:12px; }
-    summary { cursor:pointer; color:var(--accent); }
-    pre { white-space:pre-wrap; word-wrap:break-word; background:#0a1020; padding:14px; border-radius:16px; border:1px solid var(--line); color:#dfe7ff; font-size:12px; }
+    :root { --bg:#0b1020; --card:rgba(255,255,255,.08); --text:#eef2ff; --muted:#b9c2e3; --accent:#76a9ff; --accent2:#8ef0c7; --danger:#ff8f8f; --shadow:0 10px 30px rgba(0,0,0,.28); --radius:20px; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--text); background:radial-gradient(circle at top right, rgba(118,169,255,.18), transparent 28%), radial-gradient(circle at top left, rgba(142,240,199,.12), transparent 22%), linear-gradient(180deg,#0b1020 0%,#121a31 100%); min-height:100vh; }
+    .wrap { max-width:760px; margin:0 auto; padding:16px 14px 36px; }
+    .hero { padding:18px; border-radius:24px; background:linear-gradient(135deg, rgba(118,169,255,.22), rgba(255,255,255,.08)); box-shadow:var(--shadow); backdrop-filter:blur(14px); margin-bottom:14px; }
+    .eyebrow { color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:6px 0 6px; font-size:30px; line-height:1.05; }
+    .sub { color:var(--muted); font-size:14px; line-height:1.45; }
+    .grid { display:grid; gap:12px; }
+    .stats { grid-template-columns:repeat(2,1fr); margin-top:14px; }
+    .stat { background:rgba(255,255,255,.08); border-radius:18px; padding:14px; }
+    .stat .k { color:var(--muted); font-size:12px; }
+    .stat .v { font-size:22px; font-weight:700; margin-top:4px; }
+    .section { background:var(--card); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); backdrop-filter:blur(10px); margin-top:12px; scroll-margin-top:16px; }
+    .section h2 { margin:0 0 12px; font-size:18px; }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; }
+    .chip-btn { font-size:12px; color:#dbe6ff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:8px 11px; text-decoration:none; display:inline-block; }
+    .interactive { display:block; width:100%; text-align:left; background:transparent; color:inherit; border:0; padding:0; font:inherit; }
+    .news-item,.event,.task-card,.trip-card { padding:12px 0; border-top:1px solid rgba(255,255,255,.08); }
+    .news-item:first-of-type,.event:first-of-type,.task-card:first-of-type,.trip-card:first-of-type { border-top:0; padding-top:0; }
+    .title { font-weight:650; line-height:1.35; }
+    .meta { color:var(--muted); font-size:12px; margin-top:5px; }
+    .detail { overflow:hidden; max-height:0; transition:max-height .28s ease; color:var(--muted); font-size:14px; line-height:1.5; }
+    .detail.open { max-height:800px; margin-top:10px; }
+    .board { display:grid; gap:10px; }
+    .task-card { background:rgba(255,255,255,.05); border-radius:16px; padding:12px; border-top:0 !important; }
+    .bar { height:8px; background:rgba(255,255,255,.08); border-radius:999px; margin-top:10px; overflow:hidden; }
+    .bar > span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+    .markets { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .market { background:rgba(255,255,255,.05); border-radius:16px; padding:12px; }
+    .positive { color:var(--accent2); } .negative { color:var(--danger); }
+    .weather-top { display:flex; align-items:center; gap:12px; }
+    .weather-icon { font-size:42px; line-height:1; }
+    .forecast-list,.trip-list { display:grid; gap:8px; margin-top:10px; }
+    .forecast-item,.trip-item { display:flex; justify-content:space-between; gap:14px; background:rgba(255,255,255,.05); border-radius:14px; padding:10px 12px; align-items:flex-start; }
+    .trip-card { background:rgba(255,255,255,.04); border-radius:18px; padding:14px; border-top:0 !important; }
+    .tap-row { display:block; text-decoration:none; color:inherit; }
+    .tap-row .trip-item { transition:transform .12s ease, background .12s ease; }
+    .tap-row:active .trip-item { transform:scale(.99); background:rgba(255,255,255,.08); }
+    .footer { color:var(--muted); text-align:center; font-size:12px; margin-top:18px; }
+    @media (min-width:680px) { .stats { grid-template-columns:repeat(4,1fr); } .two { display:grid; grid-template-columns:1.2fr .8fr; gap:12px; } .markets { grid-template-columns:repeat(4,1fr); } }
   </style>
 </head>
 <body>
-  <main class='wrap'>
-    <header class='hero'>
-      <div class='eyebrow'>Daily morning brief</div>
-      <h1>GOOD MORNING — SAT 14 MAR</h1>
-      <div class='sub'>Published from the live 08:30 Athens delivery pipeline. Date: 2026-03-14. Sent via OpenClaw and mirrored here for mobile reading.</div>
-      <div class='cta'>
-        <a class='pill' href='https://philomelius.github.io/Morning-brief/'>Public page</a>
-        <span class='pill'>Run status: ok</span>
-        <span class='pill'>Delivery: delivered</span>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Prototype · mobile-first morning brief</div>
+      <h1>Good morning, Nicolas</h1>
+      <div class="sub">“A calm mind makes better decisions.” — Naval Ravikant</div>
+      <div class="grid stats">
+        <div class="stat"><div class="k">Weather</div><div class="v">19° / 24°</div></div>
+        <div class="stat"><div class="k">Calendar</div><div class="v">3 items</div></div>
+        <div class="stat"><div class="k">Projects</div><div class="v">3 focus</div></div>
+        <div class="stat"><div class="k">Brent</div><div class="v">$82.4</div></div>
       </div>
-    </header>
-    <nav><a href='#overview'>Overview</a></nav>
-    <div class='grid'><section class='card' id='overview'><h2>Overview</h2><p>WEATHER — DAFNÉS, CRETE</p><ul><li>6–9°C today</li><li>Cool, grey, with patchy rain risk through much of the day</li><li>Rain chance: elevated most of the day</li><li>Wind: northerly around 9–16 km/h, gusts up to ~29 km/h</li><li>Right now: 6°C, patchy rain nearby</li><li>Best read: not a beach-weather day; jacket useful, especially on the dog walk</li></ul><p>CALENDAR</p><ul><li>No calendar events could be retrieved from the current calendar connection at send time.</li></ul><p>INTERNATIONAL HEADLINES</p><ul><li>Middle East: more US Marines and warships may be moved into the region, according to BBC reporting.</li><li>Ukraine / sanctions: NPR reports Zelenskyy is concerned as the US suspends Russia sanctions.</li><li>Lebanon / Israel: Israeli airstrikes in Beirut reportedly displaced thousands overnight.</li><li>Global markets / macro risk: FT highlights rising concern that the Iran war could trigger a broader food/fertiliser shock.</li></ul><p>MARKETS</p><ul><li>S&amp;P 500: 6,632.19 (-0.61%)</li><li>Dow Jones: 46,558.47 (-0.26%)</li><li>Nasdaq 100: 22,105.36 (-0.93%)</li><li>Brent crude: 103.14 (latest accessible close)</li></ul><p>PROJECTS — SYNTHETIC STATUS</p><p>Overall: steady progress; the most meaningful overnight gain was on email behavior hardening.</p><p>Mini dashboard</p><ul><li>Morning brief — ACTIVE — ~72%</li></ul><p>Next: richer layout template, tighter sourcing/formatting, preference validation</p><ul><li>Dashboard link — ACTIVE — ~44%</li></ul><p>Next: choose serving path, publish reachable URL, validate mobile rendering</p><ul><li>Apple calendar path — ACTIVE — ~34%</li></ul><p>Next: choose writable source, prove Apple visibility, test event creation</p><ul><li>Voice stack — ACTIVE — ~65%</li></ul><p>Next: finalize default voice, verify best Telegram voice-delivery format, document stable path</p><ul><li>Email behavior hardening — ACTIVE / IMPROVING</li></ul><p>Overnight fixes:</p><p>- repaired action-state drift that was breaking classification</p><p>- stopped self-sent test emails from creating reply loops</p><p>- corrected short-reply delay logic to use actual body length</p><p>- sent corrected joke reply for Nicolas test at 06:03 UTC</p><p>Status: materially better, but not yet decl…</p></section></div>
-    <div class='footer'>Generated 2026-03-14 21:41 UTC from OpenClaw cron history.</div>
-    <details>
-      <summary>Raw brief text</summary>
-      <pre>GOOD MORNING — SAT 14 MAR
+    </section>
 
-WEATHER — DAFNÉS, CRETE
-• 6–9°C today
-• Cool, grey, with patchy rain risk through much of the day
-• Rain chance: elevated most of the day
-• Wind: northerly around 9–16 km/h, gusts up to ~29 km/h
-• Right now: 6°C, patchy rain nearby
-• Best read: not a beach-weather day; jacket useful, especially on the dog walk
+    <section class="section" id="glance">
+      <h2>Today at a glance</h2>
+      <div class="chips">
+        <a class="chip-btn" href="#weather">Weather</a>
+        <a class="chip-btn" href="#calendar">Calendar</a>
+        <a class="chip-btn" href="#projects">Projects</a>
+        <a class="chip-btn" href="#markets">Markets</a>
+      </div>
+    </section>
 
-CALENDAR
-• No calendar events could be retrieved from the current calendar connection at send time.
+    <div class="two">
+      <section class="section" id="news">
+        <h2>Top headlines</h2>
+        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">Global markets steady as inflation expectations cool</div><div class="meta">Reuters · tap for more</div></button><div class="detail" id="news1">Risk assets are firmer as traders price a softer inflation path and a less aggressive rate outlook. The main significance for your briefing is a calmer macro backdrop, not a dramatic market shift.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">EU policy talks focus on energy, growth, and security posture</div><div class="meta">Financial Times · tap for more</div></button><div class="detail" id="news2">The likely practical implications are continued pressure on industrial costs, strategic investment, and political messaging around resilience. It matters as context rather than as a single market-moving event.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">AI infrastructure spending remains strong across major cloud players</div><div class="meta">Bloomberg · tap for more</div></button><div class="detail" id="news3">The broad picture remains the same: capital keeps flowing into compute, models, and deployment capacity. For your strategic interests, the signal is that the platform race is still accelerating rather than cooling.</div></div>
+      </section>
+      <section class="section" id="weather">
+        <h2>Weather</h2>
+        <button class="interactive toggle" data-target="forecast5d"><div class="weather-top"><div class="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta">Sunny intervals • gentle wind</div><div class="meta" style="margin-top:8px;font-size:20px;color:#eef2ff;font-weight:700;">12° <span style="opacity:.65; padding:0 6px;">→</span> 25°</div></div></div></button>
+        <div class="detail" id="forecast5d"><div class="forecast-list"><div class="forecast-item"><span>Sat ☀️</span><span>18° / 24°</span></div><div class="forecast-item"><span>Sun ⛅️</span><span>17° / 23°</span></div><div class="forecast-item"><span>Mon 🌤️</span><span>16° / 22°</span></div><div class="forecast-item"><span>Tue 🌧️</span><span>15° / 20°</span></div><div class="forecast-item"><span>Wed ☀️</span><span>17° / 24°</span></div></div></div>
+      </section>
+    </div>
 
-INTERNATIONAL HEADLINES
-• Middle East: more US Marines and warships may be moved into the region, according to BBC reporting.
-• Ukraine / sanctions: NPR reports Zelenskyy is concerned as the US suspends Russia sanctions.
-• Lebanon / Israel: Israeli airstrikes in Beirut reportedly displaced thousands overnight.
-• Global markets / macro risk: FT highlights rising concern that the Iran war could trigger a broader food/fertiliser shock.
+    <section class="section" id="calendar">
+      <h2>Calendar</h2>
+      <div class="event"><div class="title">10:30 — Work start</div><div class="meta">BNP Paribas schedule placeholder</div></div>
+      <div class="event"><div class="title">14:00 — Follow-up block</div><div class="meta">Admin / personal tasks placeholder</div></div>
+      <div class="event"><div class="title">18:30 — Friday recurring event</div><div class="meta">Schedule placeholder</div></div>
+    </section>
 
-MARKETS
-• S&amp;P 500: 6,632.19 (-0.61%)
-• Dow Jones: 46,558.47 (-0.26%)
-• Nasdaq 100: 22,105.36 (-0.93%)
-• Brent crude: 103.14 (latest accessible close)
+    <section class="section" id="projects">
+      <h2>Project dashboard</h2>
+      <div class="board">
+        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Email pipeline cutover</div><div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div><div class="bar"><span style="width:58%"></span></div></button><div class="detail" id="proj1">Main achievements: Gmail retired, new mailbox path identified, DNS route narrowed, real outbound tests attempted. Potential blockers: final DNS propagation and end-to-end receive/send verification.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Morning brief webpage</div><div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div><div class="bar"><span style="width:42%"></span></div></button><div class="detail" id="proj2">Main achievements: GitHub Pages route proven, mobile-first prototype live, interactive sections added. Potential blockers: richer live data, graphs, and daily publishing workflow hardening.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Calendar write path</div><div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div><div class="bar"><span style="width:22%"></span></div></button><div class="detail" id="proj3">Main achievements: requirements clarified. Potential blockers: choosing the write path that is reliable and visible in Nicolas’s Apple calendar without manual friction.</div></div>
+      </div>
+    </section>
 
-PROJECTS — SYNTHETIC STATUS
-Overall: steady progress; the most meaningful overnight gain was on email behavior hardening.
+    <section class="section" id="weekend-trip">
+      <h2>Weekend road trip</h2>
+      <div class="trip-card">
+        <button class="interactive toggle" data-target="weekendTripDetail">
+          <div class="title">Loutraki Beach, Akrotiri</div>
+          <div class="meta">A more scenic westward run, with a calmer beach mood than dense city-front options and a cleaner sense of arrival.</div>
+        </button>
+        <div class="detail" id="weekendTripDetail">
+          <div class="trip-list">
+            <a class="tap-row" href="https://www.google.com/maps/dir/?api=1&origin=Dafnes+Heraklion+Crete&destination=Loutraki+Beach+Akrotiri+Greece&travelmode=driving" target="_blank" rel="noopener">
+              <div class="trip-item"><strong>Itinerary</strong><span>About 2h 20m by car. It feels like a real westward outing rather than a quick local beach hop, with a more scenic sense of departure and arrival.</span></div>
+            </a>
+            <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Loutraki+Beach+Akrotiri+Greece" target="_blank" rel="noopener">
+              <div class="trip-item"><strong>Destination</strong><span>Loutraki is a contained, attractive beach stop with a calmer emotional profile than busier urban-front options. It suits a simple beach-and-lunch plan better than a chaotic all-day outing.</span></div>
+            </a>
+          </div>
 
-Mini dashboard
-• Morning brief — ACTIVE — ~72%
-  Next: richer layout template, tighter sourcing/formatting, preference validation
+          <div class="trip-card" style="margin-top:12px;">
+            <div class="title">Food with a view nearby</div>
+            <div class="meta">Tap a place to open it in Google Maps.</div>
+            <div class="trip-list">
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=NAMFI+Restaurant+Marathi+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>NAMFI Restaurant</strong><div class="meta">Marathi · rating 4.5 · 985 reviews</div></div><span>Casual seafront option close to the beach area.</span></div></a>
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Almy+Seaside+Armeni+Greece" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Almy Seaside</strong><div class="meta">Armeni · rating 4.5 · 993 reviews</div></div><span>Seaside setting with a more laid-back feel and strong view value.</span></div></a>
+              <a class="tap-row" href="https://www.google.com/maps/search/?api=1&query=Canale+Restaurant+Chania" target="_blank" rel="noopener"><div class="trip-item"><div><strong>Canale Restaurant Chania</strong><div class="meta">Old Port · rating 4.9 · 5,926 reviews</div></div><span>Stronger wow factor if you want the lunch stop to feel more polished and scenic.</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-• Dashboard link — ACTIVE — ~44%
-  Next: choose serving path, publish reachable URL, validate mobile rendering
+    <section class="section" id="markets">
+      <h2>Markets</h2>
+      <div class="markets">
+        <div class="market"><div class="k">S&amp;P 500</div><div class="v">5,128</div><div class="meta positive">+0.4%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#8ef0c7" stroke-width="2" points="0,18 12,17 24,15 36,16 48,12 60,13 72,10 84,8 100,6"/></svg></div>
+        <div class="market"><div class="k">Nasdaq</div><div class="v">16,021</div><div class="meta positive">+0.7%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#8ef0c7" stroke-width="2" points="0,20 12,18 24,17 36,14 48,12 60,13 72,9 84,7 100,4"/></svg></div>
+        <div class="market"><div class="k">Stoxx 600</div><div class="v">503</div><div class="meta negative">-0.2%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#ff8f8f" stroke-width="2" points="0,6 12,7 24,9 36,10 48,11 60,13 72,14 84,16 100,18"/></svg></div>
+        <button class="interactive toggle market" data-target="marketBrent"><div class="k">Brent</div><div class="v">N/A</div><div class="meta positive">tap for context</div></button><div class="detail" id="marketBrent">Brent crude is a key global oil benchmark. Tap market tiles to reveal a quick context layer rather than just a static number.</div>
+      </div>
+    </section>
 
-• Apple calendar path — ACTIVE — ~34%
-  Next: choose writable source, prove Apple visibility, test event creation
-
-• Voice stack — ACTIVE — ~65%
-  Next: finalize default voice, verify best Telegram voice-delivery format, document stable path
-
-• Email behavior hardening — ACTIVE / IMPROVING
-  Overnight fixes:
-  - repaired action-state drift that was breaking classification
-  - stopped self-sent test emails from creating reply loops
-  - corrected short-reply delay logic to use actual body length
-  - sent corrected joke reply for Nicolas test at 06:03 UTC
-  Status: materially better, but not yet decl…</pre>
-    </details>
+    <div class="footer">Prototype only · next step is wiring live data and daily publication flow</div>
   </main>
+  <script>
+    document.querySelectorAll('.toggle').forEach(btn => btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.toggle('open');
+    }));
+  </script>
 </body>
 </html>
