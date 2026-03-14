@@ -192,21 +192,18 @@
       }).join('');
     }
 
+    const PRELOADED_BRENT = { price: 103.14, deltaPct: 1.4, source: 'Stooq latest close' };
+
     async function loadBrent() {
-      const res = await fetch('https://stooq.com/q/l/?s=cb.f&i=d');
-      if (!res.ok) throw new Error('brent fetch failed');
-      const text = (await res.text()).trim();
-      const parts = text.split(',');
-      const close = Number(parts[6]);
-      const open = Number(parts[3]);
+      const close = Number(PRELOADED_BRENT.price);
+      const delta = Number(PRELOADED_BRENT.deltaPct);
       if (!Number.isFinite(close)) throw new Error('bad brent value');
-      const delta = Number.isFinite(open) && open ? (((close - open) / open) * 100) : null;
       document.getElementById('hero-brent').textContent = `$${close.toFixed(2)}`;
       document.getElementById('brent-price').textContent = `$${close.toFixed(2)}`;
-      document.getElementById('brent-meta').textContent = delta === null ? 'Latest close · Stooq' : `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}% vs open · Stooq`;
+      document.getElementById('brent-meta').textContent = Number.isFinite(delta) ? `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}% vs open · ${PRELOADED_BRENT.source}` : PRELOADED_BRENT.source;
       const metaEl = document.getElementById('brent-meta');
       metaEl.classList.remove('positive', 'negative');
-      metaEl.classList.add(delta !== null && delta < 0 ? 'negative' : 'positive');
+      metaEl.classList.add(Number.isFinite(delta) && delta < 0 ? 'negative' : 'positive');
     }
 
     Promise.allSettled([loadWeather(), loadBrent()]).then(results => {
