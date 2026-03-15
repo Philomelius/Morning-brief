@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Morning Brief Prototype</title>
+  <title>Morning Brief — Sunday 15 March</title>
   <style>
     :root { --bg:#0b1020; --card:rgba(255,255,255,.08); --text:#eef2ff; --muted:#b9c2e3; --accent:#76a9ff; --accent2:#8ef0c7; --danger:#ff8f8f; --shadow:0 10px 30px rgba(0,0,0,.28); --radius:20px; }
     * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -56,10 +56,10 @@
       <h1>Good morning, Nicolas</h1>
       <div class="sub">“A calm mind makes better decisions.” — Naval Ravikant</div>
       <div class="grid stats">
-        <div class="stat"><div class="k">Weather</div><div class="v" id="hero-weather">Loading…</div></div>
+        <div class="stat"><div class="k">Weather</div><div class="v" id="hero-weather">7° / 16°</div></div>
         <div class="stat"><div class="k">Calendar</div><div class="v">3 items</div></div>
         <div class="stat"><div class="k">Projects</div><div class="v">3 focus</div></div>
-        <div class="stat"><div class="k">Brent</div><div class="v" id="hero-brent">Loading…</div></div>
+        <div class="stat"><div class="k">Brent</div><div class="v" id="hero-brent">$103.14</div></div>
       </div>
     </section>
 
@@ -76,14 +76,14 @@
     <div class="two">
       <section class="section" id="news">
         <h2>Top headlines</h2>
-        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">BBC visits aftermath of Israeli strike on Lebanon that killed family as IDF targets Hezbollah</div><div class="meta">BBC World RSS · tap for more</div></button><div class="detail" id="news1">This keeps the Middle East conflict at the top of the international risk picture today, with direct relevance to regional escalation, diplomacy, and wider shipping/security pressure.</div></div>
-        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">Zelensky accuses EU allies of 'blackmail' in oil pipeline row</div><div class="meta">BBC World RSS · tap for more</div></button><div class="detail" id="news2">The practical angle is energy leverage inside Europe: pipeline disputes can spill into pricing, political friction, and broader security alignment questions.</div></div>
-        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">Iran War Live Updates: Israel Launches New Strikes on Iran</div><div class="meta">NYT World RSS · tap for more</div></button><div class="detail" id="news3">The market and geopolitical significance remains straightforward: fresh strikes keep oil, shipping, and regional escalation risk firmly in focus for the day.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">BBC visits aftermath of Israeli strike on Lebanon that killed family as IDF targets Hezbollah</div><div class="meta">BBC World · tap for more</div></button><div class="detail" id="news1">A relative tells BBC those killed were civilians and not Hezbollah operatives, but the Israel Defense Forces says it was targeting "terrorist infrastructure".</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">Zelensky accuses EU allies of 'blackmail' in oil pipeline row</div><div class="meta">BBC World · tap for more</div></button><div class="detail" id="news2">Volodymyr Zelensky says restoring the flow of Russian oil via Ukraine into the EU would be like lifting sanctions on Russia.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">Iran War Live Updates: Israel Launches New Strikes on Iran</div><div class="meta">NYT World · tap for more</div></button><div class="detail" id="news3">Iran’s foreign minister claimed the Strait of Hormuz was open to all except America or its allies. President Trump had threatened to strike Iran’s main oil export terminal if it did not lift the de facto blockade.</div></div>
       </section>
       <section class="section" id="weather">
         <h2>Weather</h2>
-        <button class="interactive toggle" data-target="forecast5d"><div class="weather-top"><div class="weather-icon" id="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta" id="weather-summary">Loading live weather…</div><div class="meta" id="weather-range" style="margin-top:8px;font-size:20px;color:#eef2ff;font-weight:700;">--° <span style="opacity:.65; padding:0 6px;">→</span> --°</div></div></div></button>
-        <div class="detail" id="forecast5d"><div class="forecast-list" id="forecast-list"><div class="forecast-item"><span>Loading…</span><span>--</span></div></div></div>
+        <button class="interactive toggle" data-target="forecast5d"><div class="weather-top"><div class="weather-icon" id="weather-icon">☀️</div><div><div class="title">Dafnés, Crete</div><div class="meta" id="weather-summary">Clear sky · rain risk 0% · wind up to 23 km/h</div><div class="meta" id="weather-range" style="margin-top:8px;font-size:20px;color:#eef2ff;font-weight:700;">16° <span style="opacity:.65; padding:0 6px;">→</span> 16°<span style="opacity:.65; padding:0 6px;">→</span> --°</div></div></div></button>
+        <div class="detail" id="forecast5d"><div class="forecast-list" id="forecast-list"><div class="forecast-item"><span>Sun</span><span>7° / 16°</span></div><div class="forecast-item"><span>Mon</span><span>5° / 17°</span></div><div class="forecast-item"><span>Tue</span><span>8° / 18°</span></div><div class="forecast-item"><span>Wed</span><span>9° / 18°</span></div><div class="forecast-item"><span>Thu</span><span>13° / 15°</span></div></div></div></div>
       </section>
     </div>
 
@@ -95,9 +95,9 @@
     <section class="section" id="projects">
       <h2>Project dashboard</h2>
       <div class="board">
-        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Email pipeline</div><div class="meta">Status: Active priority · Goal: reliably read, understand, and act on incoming mail</div><div class="bar"><span style="width:68%"></span></div></button><div class="detail" id="proj1">What changed recently: shared-state cleanup, lock-aware execution, and repeated live testing against real emails. What still matters: eliminate threaded reply errors and make the latest message reliably drive the reply.</div></div>
-        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Morning brief</div><div class="meta">Status: Active priority · Goal: GitHub-page-first polished daily brief</div><div class="bar"><span style="width:72%"></span></div></button><div class="detail" id="proj2">What changed recently: approved rich layout restored, separate noisy progress cron removed, and the brief job rewritten around the GitHub-page-first workflow. What still matters: keep every section fresh on each publish, especially headlines.</div></div>
-        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Calendar write path</div><div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div><div class="bar"><span style="width:24%"></span></div></button><div class="detail" id="proj3">Requirements are clear, but the implementation path is still pending. The next useful step is choosing the write route that is reliable and visible in Nicolas’s Apple calendar without friction.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Make the live email pipeline reliably read, understand, and act on incoming mail</div><div class="meta">Status: Active priority · Rank 1</div><div class="bar"><span style="width:72%"></span></div></button><div class="detail" id="proj1">Incoming emails are actually read at body level, not just detected</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Deliver a reliable, high-quality daily morning brief</div><div class="meta">Status: Active priority · Rank 2</div><div class="bar"><span style="width:68%"></span></div></button><div class="detail" id="proj2">08:30 Athens delivery completes reliably</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Implement an assistant-controlled calendar path reflected into Nicolas's Apple Calendar</div><div class="meta">Status: Active priority · Rank 3</div><div class="bar"><span style="width:24%"></span></div></button><div class="detail" id="proj3">Assistant can create/edit/delete events on a separate calendar path</div></div>
       </div>
     </section>
 
@@ -137,11 +137,11 @@
         <div class="market"><div class="k">S&amp;P 500</div><div class="v">5,128</div><div class="meta positive">+0.4%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#8ef0c7" stroke-width="2" points="0,18 12,17 24,15 36,16 48,12 60,13 72,10 84,8 100,6"/></svg></div>
         <div class="market"><div class="k">Nasdaq</div><div class="v">16,021</div><div class="meta positive">+0.7%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#8ef0c7" stroke-width="2" points="0,20 12,18 24,17 36,14 48,12 60,13 72,9 84,7 100,4"/></svg></div>
         <div class="market"><div class="k">Stoxx 600</div><div class="v">503</div><div class="meta negative">-0.2%</div><svg viewBox="0 0 100 24" width="100%" height="24" aria-hidden="true"><polyline fill="none" stroke="#ff8f8f" stroke-width="2" points="0,6 12,7 24,9 36,10 48,11 60,13 72,14 84,16 100,18"/></svg></div>
-        <button class="interactive toggle market" data-target="marketBrent"><div class="k">Brent</div><div class="v" id="brent-price">Loading…</div><div class="meta positive" id="brent-meta">Fetching live quote</div></button><div class="detail" id="marketBrent">Brent crude is a key global oil benchmark. Source: Stooq continuous Brent futures feed, refreshed live for this page.</div>
+        <button class="interactive toggle market" data-target="marketBrent"><div class="k">Brent</div><div class="v" id="brent-price">$103.14</div><div class="meta positive" id="brent-meta">+1.4% vs open · Stooq latest close</div></button><div class="detail" id="marketBrent">Brent crude is a key global oil benchmark. Source: Stooq continuous Brent futures feed, refreshed live for this page.</div>
       </div>
     </section>
 
-    <div class="footer">Prototype only · next step is wiring live data and daily publication flow</div>
+    <div class="footer">Published 2026-03-15 15:08 Europe/Athens from fresh feeds and current project state.</div>
   </main>
   <script>
     document.querySelectorAll('.toggle').forEach(btn => btn.addEventListener('click', () => {
