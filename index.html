@@ -76,10 +76,9 @@
     <div class="two">
       <section class="section" id="news">
         <h2>Top headlines</h2>
-        <!-- Replace all three items at publication time with fresh current-day headlines selected from RSS feeds. Preferred source pool: BBC World, Reuters World, NYT World, FT World/Markets. Never leave stale hardcoded stories here. -->
-        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">[RSS headline 1 — replace with current story]</div><div class="meta">[Source] · tap for more</div></button><div class="detail" id="news1">[One short Nicolas-facing summary of why this headline matters today. Replace before publication.]</div></div>
-        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">[RSS headline 2 — replace with current story]</div><div class="meta">[Source] · tap for more</div></button><div class="detail" id="news2">[One short Nicolas-facing summary of why this headline matters today. Replace before publication.]</div></div>
-        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">[RSS headline 3 — replace with current story]</div><div class="meta">[Source] · tap for more</div></button><div class="detail" id="news3">[One short Nicolas-facing summary of why this headline matters today. Replace before publication.]</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news1"><div class="title">BBC visits aftermath of Israeli strike on Lebanon that killed family as IDF targets Hezbollah</div><div class="meta">BBC World RSS · tap for more</div></button><div class="detail" id="news1">This keeps the Middle East conflict at the top of the international risk picture today, with direct relevance to regional escalation, diplomacy, and wider shipping/security pressure.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news2"><div class="title">Zelensky accuses EU allies of 'blackmail' in oil pipeline row</div><div class="meta">BBC World RSS · tap for more</div></button><div class="detail" id="news2">The practical angle is energy leverage inside Europe: pipeline disputes can spill into pricing, political friction, and broader security alignment questions.</div></div>
+        <div class="news-item"><button class="interactive toggle" data-target="news3"><div class="title">Iran War Live Updates: Israel Launches New Strikes on Iran</div><div class="meta">NYT World RSS · tap for more</div></button><div class="detail" id="news3">The market and geopolitical significance remains straightforward: fresh strikes keep oil, shipping, and regional escalation risk firmly in focus for the day.</div></div>
       </section>
       <section class="section" id="weather">
         <h2>Weather</h2>
@@ -90,17 +89,15 @@
 
     <section class="section" id="calendar">
       <h2>Calendar</h2>
-      <div class="event"><div class="title">10:30 — Work start</div><div class="meta">BNP Paribas schedule placeholder</div></div>
-      <div class="event"><div class="title">14:00 — Follow-up block</div><div class="meta">Admin / personal tasks placeholder</div></div>
-      <div class="event"><div class="title">18:30 — Friday recurring event</div><div class="meta">Schedule placeholder</div></div>
+      <div class="event"><div class="title">No events scheduled</div><div class="meta">Nothing confirmed on the calendar for today.</div></div>
     </section>
 
     <section class="section" id="projects">
       <h2>Project dashboard</h2>
       <div class="board">
-        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Email pipeline cutover</div><div class="meta">Status: In progress · Goal: operational new mailbox + reply automation</div><div class="bar"><span style="width:58%"></span></div></button><div class="detail" id="proj1">Main achievements: Gmail retired, new mailbox path identified, DNS route narrowed, real outbound tests attempted. Potential blockers: final DNS propagation and end-to-end receive/send verification.</div></div>
-        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Morning brief webpage</div><div class="meta">Status: In progress · Goal: polished mobile-first page sent by link at 08:30</div><div class="bar"><span style="width:42%"></span></div></button><div class="detail" id="proj2">Main achievements: GitHub Pages route proven, mobile-first prototype live, interactive sections added. Potential blockers: richer live data, graphs, and daily publishing workflow hardening.</div></div>
-        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Calendar write path</div><div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div><div class="bar"><span style="width:22%"></span></div></button><div class="detail" id="proj3">Main achievements: requirements clarified. Potential blockers: choosing the write path that is reliable and visible in Nicolas’s Apple calendar without manual friction.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj1"><div class="title">Email pipeline</div><div class="meta">Status: Active priority · Goal: reliably read, understand, and act on incoming mail</div><div class="bar"><span style="width:68%"></span></div></button><div class="detail" id="proj1">What changed recently: shared-state cleanup, lock-aware execution, and repeated live testing against real emails. What still matters: eliminate threaded reply errors and make the latest message reliably drive the reply.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj2"><div class="title">Morning brief</div><div class="meta">Status: Active priority · Goal: GitHub-page-first polished daily brief</div><div class="bar"><span style="width:72%"></span></div></button><div class="detail" id="proj2">What changed recently: approved rich layout restored, separate noisy progress cron removed, and the brief job rewritten around the GitHub-page-first workflow. What still matters: keep every section fresh on each publish, especially headlines.</div></div>
+        <div class="task-card"><button class="interactive toggle" data-target="proj3"><div class="title">Calendar write path</div><div class="meta">Status: Planned · Goal: assistant-created events visible in Apple Calendar</div><div class="bar"><span style="width:24%"></span></div></button><div class="detail" id="proj3">Requirements are clear, but the implementation path is still pending. The next useful step is choosing the write route that is reliable and visible in Nicolas’s Apple calendar without friction.</div></div>
       </div>
     </section>
 
