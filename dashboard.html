@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phil Progress Board</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #131a33;
+      --panel-2: #182244;
+      --line: #2a3568;
+      --text: #eef2ff;
+      --muted: #aeb8e8;
+      --fresh: #64748b;
+      --started: #2563eb;
+      --active: #0ea5e9;
+      --blocked: #f59e0b;
+      --done: #22c55e;
+      --maint: #8b5cf6;
+      --queued: #64748b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: linear-gradient(180deg, #0a0f1d 0%, #101935 100%);
+      color: var(--text);
+    }
+    header {
+      padding: 20px 18px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 12, 26, 0.85);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+    }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    .sub { margin: 0; color: var(--muted); font-size: 14px; }
+    .wrap {
+      padding: 14px;
+      display: grid;
+      gap: 14px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    .pill {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .pill .k { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+    .pill .v { font-size: 18px; font-weight: 700; }
+    .board {
+      display: grid;
+      gap: 12px;
+    }
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .title { margin: 0; font-size: 16px; }
+    .meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .badge {
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .status-active { background: rgba(14,165,233,0.15); color: #7dd3fc; border-color: rgba(125,211,252,0.25); }
+    .status-queued { background: rgba(100,116,139,0.16); color: #cbd5e1; border-color: rgba(203,213,225,0.18); }
+    .status-maintenance { background: rgba(139,92,246,0.15); color: #c4b5fd; border-color: rgba(196,181,253,0.22); }
+    .status-finished { background: rgba(34,197,94,0.15); color: #86efac; border-color: rgba(134,239,172,0.22); }
+    .bar {
+      height: 9px;
+      background: #0b1228;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 12px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .fill { height: 100%; border-radius: 999px; }
+    .fill.active { background: linear-gradient(90deg, #38bdf8, #3b82f6); }
+    .fill.queued { background: linear-gradient(90deg, #64748b, #94a3b8); }
+    .fill.maintenance { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .fill.finished { background: linear-gradient(90deg, #22c55e, #4ade80); }
+    .goal {
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .list-title { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    li { margin: 4px 0; }
+    .resources { margin-top: 10px; color: var(--muted); font-size: 12px; }
+    @media (min-width: 860px) {
+      .summary { grid-template-columns: repeat(4, minmax(0,1fr)); }
+      .board { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Phil Progress Board</h1>
+    <p class="sub">Mobile-first working view for Nicolas — synced to PROJECTS.json on 2026-03-12.</p>
+  </header>
+  <main class="wrap">
+    <section class="summary">
+      <div class="pill"><div class="k">Priority focus</div><div class="v">Morning brief</div></div>
+      <div class="pill"><div class="k">Active projects</div><div class="v">4</div></div>
+      <div class="pill"><div class="k">Queued</div><div class="v">3</div></div>
+      <div class="pill"><div class="k">Maintenance</div><div class="v">1</div></div>
+    </section>
+
+    <section class="board">
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">1. Rich morning brief</h2>
+            <div class="meta">Owner: project_manager · Category: delivery · ETA: next morning-ready iteration</div>
+          </div>
+          <span class="badge status-active">active</span>
+        </div>
+        <div class="bar"><div class="fill active" style="width: 72%"></div></div>
+        <div class="goal">Deliver a rich, elegant, mobile-friendly morning brief that matches Nicolas's layout and content requirements.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Ship richer layout template</li>
+          <li>Tighten sources and formatting</li>
+          <li>Validate against Nicolas preferences</li>
+        </ul>
+        <div class="resources">Resources: communication, research, analysis, quality_control, coordination, head_of_engineering, ux_designer · Track: on the critical path</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">2. Mobile-first dashboard link</h2>
+            <div class="meta">Owner: project_manager · Category: interface/infrastructure · ETA: publishable link still pending</div>
+          </div>
+          <span class="badge status-active">active</span>
+        </div>
+        <div class="bar"><div class="fill active" style="width: 44%"></div></div>
+        <div class="goal">Deliver a mobile-usable dashboard link Nicolas can open directly.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Choose serving path</li>
+          <li>Publish reachable URL</li>
+          <li>Validate mobile rendering</li>
+        </ul>
+        <div class="resources">Resources: coding, systems_engineer, head_of_engineering, quality_control · Track: behind target until a reachable URL exists</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">3. Apple calendar write path</h2>
+            <div class="meta">Owner: project_manager · Category: integration · ETA: proof path not yet validated</div>
+          </div>
+          <span class="badge status-active">active</span>
+        </div>
+        <div class="bar"><div class="fill active" style="width: 34%"></div></div>
+        <div class="goal">Create an assistant-controlled calendar path that appears in Nicolas's Apple Calendar.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Choose writable calendar source</li>
+          <li>Validate Apple visibility</li>
+          <li>Test event creation</li>
+        </ul>
+        <div class="resources">Resources: systems_engineer, coding, research, head_of_engineering · Track: blocked by integration proof</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">4. Speech synthesis and recognition</h2>
+            <div class="meta">Owner: project_manager · Category: voice · ETA: core path working, UX/documentation still pending</div>
+          </div>
+          <span class="badge status-active">active</span>
+        </div>
+        <div class="bar"><div class="fill active" style="width: 65%"></div></div>
+        <div class="goal">Enable good voice interaction.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Finalize default voice choice</li>
+          <li>Verify best Telegram reply-delivery format for voice output</li>
+          <li>Document the stabilized TTS/STT path</li>
+        </ul>
+        <div class="resources">Resources: research, coding, head_of_engineering · Track: working core is live; finish UX and harden documentation</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">5. Error recovery and missed-request handling</h2>
+            <div class="meta">Owner: systems_engineer · Category: reliability · ETA: undefined</div>
+          </div>
+          <span class="badge status-queued">queued</span>
+        </div>
+        <div class="bar"><div class="fill queued" style="width: 20%"></div></div>
+        <div class="goal">Reduce dropped turns and ugly error surfacing.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Patch remaining leak path</li>
+          <li>Add recover-last-request behavior</li>
+          <li>Validate</li>
+        </ul>
+        <div class="resources">Resources: systems_engineer, coding, quality_control</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">6. Browser-capable layer</h2>
+            <div class="meta">Owner: project_manager · Category: capability · Story points: 10</div>
+          </div>
+          <span class="badge status-queued">queued</span>
+        </div>
+        <div class="bar"><div class="fill queued" style="width: 10%"></div></div>
+        <div class="goal">Add a real browser-control layer on the VPS so Phil can access blocked or difficult sites more like a human.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Validate install path for Chromium/Playwright</li>
+          <li>Implement browser-capable stack</li>
+          <li>Test on blocked sites like IKEA/Maps</li>
+        </ul>
+        <div class="resources">Resources: research, coding, systems_engineer, head_of_engineering, code_tester</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">7. Viber Desktop setup</h2>
+            <div class="meta">Owner: project_manager · Category: messaging capability · Story points: 8</div>
+          </div>
+          <span class="badge status-queued">queued</span>
+        </div>
+        <div class="bar"><div class="fill queued" style="width: 8%"></div></div>
+        <div class="goal">Install Viber Desktop on the VPS and prepare a controllable logged-in session.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Check installation feasibility on VPS</li>
+          <li>Install Viber Desktop</li>
+          <li>Prepare login/QR pairing flow</li>
+        </ul>
+        <div class="resources">Resources: systems_engineer, coding, head_of_engineering</div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <h2 class="title">8. GitHub memory backup</h2>
+            <div class="meta">Owner: project_manager · Category: maintenance · Story points: 5</div>
+          </div>
+          <span class="badge status-maintenance">maintenance</span>
+        </div>
+        <div class="bar"><div class="fill maintenance" style="width: 88%"></div></div>
+        <div class="goal">Maintain the private GitHub backup path safely without leaking secrets.</div>
+        <div class="list-title">Next actions</div>
+        <ul>
+          <li>Verify sync scope/exclusions stay safe</li>
+          <li>Confirm push automation is clean</li>
+          <li>Review secret hygiene periodically</li>
+        </ul>
+        <div class="resources">Resources: archivist, systems_engineer, risk_compliance</div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
