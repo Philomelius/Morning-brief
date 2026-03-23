@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Philomelius//Assistant Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Phil Assistant Calendar
+X-WR-CALDESC:Assistant-controlled calendar feed for Apple Calendar subscription fallback testing.
+BEGIN:VEVENT
+UID:cd79ee9087459918@philomelius-calendar
+DTSTAMP:20260322T160125Z
+DTSTART:20260322T180000Z
+DTEND:20260322T183000Z
+SUMMARY:Calendar path proof event
+DESCRIPTION:Proof-of-visibility event generated locally for the assistant
+ -controlled Apple Calendar fallback path.
+LOCATION:Test event / no travel
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
